@@ -1,0 +1,104 @@
+@import "tailwindcss";
+
+@theme {
+  --color-background: var(--bg-main);
+  --color-foreground: var(--text-main);
+  --color-accent-green: #22c55e;
+  --color-accent-purple: #a855f7;
+  --color-card-bg: var(--bg-card);
+  --color-card-border: var(--border-card);
+  
+  --font-sans: "Inter", sans-serif;
+}
+
+:root {
+  --bg-main: #0f172a;
+  --text-main: #ffffff;
+  --bg-card: rgba(255, 255, 255, 0.05);
+  --border-card: rgba(255, 255, 255, 0.1);
+  --text-muted: #94a3b8;
+}
+
+.light {
+  --bg-main: #f8fafc;
+  --text-main: #0f172a;
+  --bg-card: rgba(255, 255, 255, 0.8);
+  --border-card: rgba(0, 0, 0, 0.1);
+  --text-muted: #64748b;
+}
+
+@utility glass {
+  backdrop-filter: blur(12px);
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-card);
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+}
+
+@utility glass-hover {
+  transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  &:hover {
+    background-color: color-mix(in srgb, var(--bg-card), white 5%);
+    border-color: var(--color-accent-green);
+    box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  }
+}
+
+@utility sticky-nav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  @apply glass;
+}
+
+@utility sticky-bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  @apply glass;
+  @media (min-width: 768px) {
+    display: none;
+  }
+}
+
+@utility accent-gradient {
+  background-image: linear-gradient(to right, var(--color-accent-green), var(--color-accent-purple));
+}
+
+@layer base {
+  body {
+    background-color: var(--bg-main);
+    color: var(--text-main);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-family: 'Inter', sans-serif;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(155, 155, 155, 0.2);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(155, 155, 155, 0.4);
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
